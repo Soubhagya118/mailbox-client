@@ -7,6 +7,7 @@ const App = () => {
   return (
     <div>
     <Header/>
+    hii
       <SignUp/>
     </div>
   )
