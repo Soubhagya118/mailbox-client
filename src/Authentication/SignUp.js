@@ -1,6 +1,11 @@
 import React, { useRef } from 'react'
 import { authUrl,api } from '../Apis/Urls';
+import { useDispatch, useSelector } from 'react-redux';
+import {showNotificationMessage,clearNotification} from '../store/authSlice';
 const SignUp = () => {
+
+
+    const dispatch=useDispatch();
 
     const inputEmail=useRef();
     const inputPass=useRef();
@@ -9,10 +14,13 @@ const SignUp = () => {
 
     const submitHandler=(e)=>{
         e.preventDefault();
+
+
         const email=inputEmail.current.value;
         const pass= inputPass.current.value;
         const conPass= inputPass.current.value;
-  if(pass===conPass){      
+  if(pass===conPass){     
+ dispatch(showNotificationMessage({title:'Loading!',status:'Pending!'}))    
 fetch(`${authUrl}signUp?key=${api}`,{
     method:'POST',
     headers:{
@@ -24,10 +32,14 @@ fetch(`${authUrl}signUp?key=${api}`,{
         returnSecureToken:true
     })
 }).then(res=>res.json())
-    .then(data=>
-        console.log(data)
-    ).catch(err=>{
+    .then(data=>{
+        console.log(data);
+        dispatch(showNotificationMessage({title:'Fulfilled!',status:'Sucess!'}))    
+
+    }).catch(err=>{
         console.log("error")
+        dispatch(showNotificationMessage({title:'Error!',status:'Error!'}))    
+
     })
 
   }
