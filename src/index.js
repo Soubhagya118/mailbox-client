@@ -4,13 +4,16 @@ import './index.css';
 import App from './App';
 import { Provider } from 'react-redux';
 import ReduxStore from './store/ReduxStore'
-
+import { BrowserRouter } from 'react-router-dom';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
+    <BrowserRouter>
     <Provider store={ReduxStore}>
     <App />
     </Provider>
+    </BrowserRouter>
+   
     );
 
 // If you want to start measuring performance in your app, pass a function
