@@ -68,7 +68,7 @@ fetch(`${authUrl}signUp?key=${api}`,{
     <h1 className='my-4 text-center text-2xl'>SignUp</h1>
 
     <form onSubmit={submitHandler} className='grid gap-2'>
-        <input  className='border-2 border-black-300 p-1 rounded-md' type='email' placeholder='Email' ref={inputEmail} required/>
+        <input  className='border-2 border-black-300 p-1 rounded-md' type='email' placeholder='Email' ref={inputEmail}   data-testid="input-field" required/>
         <input className='border-2 border-black-300 p-1 rounded-md' type='password' placeholder='Password' ref={inputPass} required/>
         <input className='border-2 border-black-300 p-1 rounded-md' type='password' placeholder='Confirm Password' ref={inputConPass} required/>
         <button className='border-2 border-blue-700 mt-3 rounded-lg text-white bg-blue-700 p-1'>Sign up</button>

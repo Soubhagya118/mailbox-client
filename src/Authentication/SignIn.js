@@ -6,6 +6,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import { NavLink,useNavigate } from 'react-router-dom';
 
 const SignIn = () => {
+
+
 const navigate=useNavigate();
 
 const inputEmail=useRef();
@@ -65,7 +67,7 @@ fetch(`${authUrl}signInWithPassword?key=${api}`,{
     <h1 className='my-4 text-center text-2xl'>SignIn</h1>
 
     <form onSubmit={submitHandler} className='grid gap-2'>
-        <input  className='border-2 border-black-300 p-1 rounded-md' type='email' placeholder='Email' ref={inputEmail} required/>
+        <input  className='border-2 border-black-300 p-1 rounded-md' type='email' placeholder='Email' ref={inputEmail}  data-testid="input-field" required/>
         <input className='border-2 border-black-300 p-1 rounded-md' type='password' placeholder='Password' ref={inputPass} required/>
         <button className='border-2 border-blue-700 mt-3 rounded-lg text-white bg-blue-700 p-1'>Sign up</button>
       </form>
