@@ -5,34 +5,20 @@ const AuthSlice=createSlice(
     {
         name:'Auth',
         initialState:{
-            users:[],
-            isNotification:'',
-            isError:'',
-            notification:{}
+            users:{},
+            islogin:false,
+            
         },
         reducers:{
-            showNotificationMessage:(state,action)=>{
-                if(action.payload.title=='Loading!'){
-                state.isNotification=true;
-                state.isError=false;
-
-                }else if(action.payload.title=='Fulfilled!'){
-                state.isNotification=false;
-                state.isError=false;
-
-                }else if(action.payload.title=='Error!'){
-                    state.isError=true;
-                    state.isNotification=false;
-                }
-                state.notification={...action.payload}
-        },
-        clearNotification:(state,action)=>{
-            console.log("clear Notification")
-            state.notification = {}
-        }
+           userDetails:(state,action)=>{
+            state.islogin=true;
+            state.users={...action.payload};
+            console.log("auth user",state.users)
+           }
+           
     }
 }
 );
 
-export const {showNotificationMessage,clearNotification}=AuthSlice.actions;
+export const {userDetails}=AuthSlice.actions;
 export default AuthSlice.reducer;

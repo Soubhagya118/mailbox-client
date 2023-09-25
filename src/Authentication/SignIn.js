@@ -4,11 +4,15 @@ import { authUrl,api } from '../Apis/Urls';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { NavLink,useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import {userDetails} from '../store/authSlice';
 
 const SignIn = () => {
 
 
 const navigate=useNavigate();
+const userdata =useSelector(state=>state.Auth.users);
+const dispatch = useDispatch();
 
 const inputEmail=useRef();
 const inputPass=useRef();
@@ -42,8 +46,9 @@ fetch(`${authUrl}signInWithPassword?key=${api}`,{
 })
     .then(data=>{
       
-        console.log(data);
-        toast.success("Login Successfully")
+        console.log("login data",data);
+        toast.success("Login Successfully");
+        dispatch(userDetails({email:data?.email,localId:data?.localId,idToken:data?.idToken}))
     //    setTimeout(()=>toast.success("Login successfull"),1000)
         navigate('/home')
        // dispatch(showNotificationMessage({title:'Fulfilled!',status:'Sucess!'}))    
@@ -69,7 +74,7 @@ fetch(`${authUrl}signInWithPassword?key=${api}`,{
     <form onSubmit={submitHandler} className='grid gap-2'>
         <input  className='border-2 border-black-300 p-1 rounded-md' type='email' placeholder='Email' ref={inputEmail}  data-testid="input-field" required/>
         <input className='border-2 border-black-300 p-1 rounded-md' type='password' placeholder='Password' ref={inputPass} required/>
-        <button className='border-2 border-blue-700 mt-3 rounded-lg text-white bg-blue-700 p-1'>Sign up</button>
+        <button className='border-2 border-blue-700 mt-3 rounded-lg text-white bg-blue-700 p-1'>Sign in</button>
       </form>
     </section>
      <section>
