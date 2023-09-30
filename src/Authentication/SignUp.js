@@ -47,7 +47,7 @@ fetch(`${authUrl}signUp?key=${api}`,{
       
         console.log(data);
         toast.success("SignUp successfull")
-        navigate('/')
+        setTimeout(()=>navigate('/'),1000)
        // dispatch(showNotificationMessage({title:'Fulfilled!',status:'Sucess!'}))    
 
     }).catch(err=>{
@@ -78,7 +78,7 @@ fetch(`${authUrl}signUp?key=${api}`,{
         <div className='border-2 border-black-600 p-2 rounded-lg text-center bg-green-100 shadow-xl'>Have an account? <NavLink to='/'>Login</NavLink> </div>
      </section>
     </div>
-    <ToastContainer/></>
+    <ToastContainer autoClose={2000}/></>
   )
 }
 

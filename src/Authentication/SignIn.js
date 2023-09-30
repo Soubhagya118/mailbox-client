@@ -49,14 +49,11 @@ fetch(`${authUrl}signInWithPassword?key=${api}`,{
         console.log("login data",data);
         toast.success("Login Successfully");
         dispatch(userDetails({email:data?.email,localId:data?.localId,idToken:data?.idToken}))
-    //    setTimeout(()=>toast.success("Login successfull"),1000)
-        navigate('/home')
-       // dispatch(showNotificationMessage({title:'Fulfilled!',status:'Sucess!'}))    
+        setTimeout(()=>navigate('/home/inbox'),1000)
 
     }).catch(err=>{
         console.log("error",err);
         toast.error(err.message)
-      //  dispatch(showNotificationMessage({title:'Error!',status:'Error!'}))    
 
     })
 
@@ -81,7 +78,7 @@ fetch(`${authUrl}signInWithPassword?key=${api}`,{
         <div className='border-2 border-black-600 p-2 rounded-lg text-center bg-green-100 shadow-xl'>Don't have an account? <NavLink to='/signup'>SignUp</NavLink> </div>
      </section>
     </div>
-    <ToastContainer/>
+    <ToastContainer  autoClose={2000}/>
     </section>
   )
 }
