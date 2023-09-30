@@ -49,7 +49,7 @@ fetch(`${authUrl}signInWithPassword?key=${api}`,{
         console.log("login data",data);
         toast.success("Login Successfully");
         dispatch(userDetails({email:data?.email,localId:data?.localId,idToken:data?.idToken}))
-        setTimeout(()=>navigate('/home/inbox'),1000)
+        setTimeout(()=>navigate('/inbox'),1000)
 
     }).catch(err=>{
         console.log("error",err);

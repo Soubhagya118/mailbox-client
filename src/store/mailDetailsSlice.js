@@ -4,7 +4,7 @@ const MailDetailsSlice=createSlice(
     {
         name:'Mail',
         initialState:{
-            mailDetails:{},
+            mailDetails:[],
             isComposeOpen:false
         },
         reducers:{
@@ -15,7 +15,7 @@ const MailDetailsSlice=createSlice(
                 state.isComposeOpen=false
             },
             addmailDetails:(state,action)=>{
-                state.mailDetails=action.payload;
+                state.mailDetails=[...action.payload];
                 console.log("m",state.mailDetails)
             }
         }

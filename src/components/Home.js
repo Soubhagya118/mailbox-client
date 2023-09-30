@@ -7,7 +7,8 @@ import EmailList from './EmailList';
 import { NavLink, Route, Routes } from 'react-router-dom';
 import Sent from '../components/Sent';
 import { useNavigate } from 'react-router-dom';
-import EmailMidPart from './emailMidPart'
+import EmailMidPart from './emailMidPart';
+
 const Home = () => {
 const navigate=useNavigate();
 
@@ -24,29 +25,30 @@ dispatch(openComposereducer());
     <>
       
     <div className='flex w-full gap-2'>
-    <div className='w-32 border-2 border-black h-12 flex flex-col'>
+    <nav className='w-32 border-2 border-black h-12 flex flex-col'>
     <div>
     <button onClick={composeHandler} className='border-2 border-gray rounded-3xl shadow-lg px-5 py-2 '> compose</button>
 
     </div>
     <div>
       <ul className='flex flex-col'>
-        <NavLink to='/home/inbox'>Inbox</NavLink>
-        <NavLink to="/home/sent">Sent</NavLink>
+        <NavLink to='/inbox'>Inbox</NavLink>
+        <NavLink to="/sent">Sent</NavLink>
       </ul>
     </div>
-    </div>
+    </nav>
     {/* ===========================================================midpart==================================================== */}
 
     <div className='flex-1 border-2 border-black'>
     <Routes>
-        <Route exact path='/home/inbox' element={<EmailList/>}/>
-        <Route exact path='/home/sent' element={<Sent/>}/>
+        <Route exact path='/inbox' element={<EmailList/>}/>
+        <Route exact path='/sent' element={<Sent/>}/>
          
       </Routes>
 </div>
 
 {/* =============================================================right side bar =============================================== */}
+
 <div className='w-32 border-2 border-black'>
       {iscompose && <Compose/>}
       </div>

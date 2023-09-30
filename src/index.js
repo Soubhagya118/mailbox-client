@@ -5,7 +5,17 @@ import App from './App';
 import { Provider } from 'react-redux';
 import ReduxStore from './store/ReduxStore'
 import { BrowserRouter } from 'react-router-dom';
+import SignIn from './Authentication/SignIn';
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
+const routes=[{
+    path:'/',
+    element:<SignIn/>
+
+},{
+    path:'/signup',
+    // element:<SignUp/>
+}]
 
 root.render(
     <BrowserRouter>

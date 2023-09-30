@@ -7,6 +7,7 @@ import { BrowserRouter as Router } from 'react-router-dom'; // Import the Router
 
 import { renderWithProviders } from '../reducerWithProvider'
 import Compose from "./components/Compose";
+import EmailList from "./components/EmailList";
 
 test("renders learn react link", () => {
   renderWithProviders( <Router>
@@ -153,7 +154,32 @@ expect(frm).toBeInTheDocument()
  });
 
 
+
+
  
 
 
+});
+
+test("Emailist",()=>{
+  renderWithProviders(<Router>
+    <Compose/>
+  </Router>)
+  const txt = screen.getByPlaceholderText("Subject");
+  expect(txt).toBeInTheDocument();
+
+})
+test("Emailist",()=>{
+  renderWithProviders(<Router>
+    <Compose/>
+  </Router>)
+  const txt = screen.getByPlaceholderText("Subject");
+  expect(txt).toBeInTheDocument();
+});
+test("Emailist",()=>{
+  renderWithProviders(<Router>
+    <Compose/>
+  </Router>)
+  const txt = screen.getByPlaceholderText("Subject");
+  expect(txt).toBeInTheDocument();
 })

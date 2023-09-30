@@ -35,10 +35,12 @@ const subjectRef=useRef();
 let [to,setTo]= useState('');
 let [sub,setSub] = useState('');
 let [msg,setMsg]=useState('');
+let unreadMsgs= mailData?.reduce((a,c)=>a+(c?.isRead==false?1:0),0);
+console.log("unreadMsgs ",unreadMsgs)
 
 const formHandler=(e)=>{
 e.preventDefault();
-// alert(`name:'${to} ${msg} ${sub}`);
+
 
 if(to==''){
   return toast.error("Recipents is required")
@@ -55,18 +57,29 @@ const period = hours >= 12 ? "PM" : "AM";
 const displayHours = hours % 12 === 0 ? 12 : hours % 12;
 
 
+
 let dataToAdd= {
   to:to,
   subject:sub,
   message:msg,
-  timestamp:`${displayHours}:${minutes}:${seconds} ${period}`
+  timestamp:`${displayHours}:${minutes}:${seconds} ${period}`,
+  isRead:false
 }
 
-const collectionRef = collection(db, 'email');
-addDoc(collectionRef, dataToAdd)
-  .then((docRef) => {
-    console.log('Data added with ID: ', docRef.id);
+fetch(`https://mailbox-client-fa8fa-default-rtdb.firebaseio.com/email.json`,{
+  method:'POST',
+  headers:{
+    'Content-Type':'application/json'
+  },body:JSON.stringify(dataToAdd)
+})
+  .then((res) => {
+   return res.json()
+
+  }).then(data=>{
+    console.log('Data added with ID: ', data);
     toast.success("email send")
+
+console.log("usesele",mailData);
 
   })
   .catch((error) => {
@@ -82,7 +95,6 @@ setTimeout(() => {
   dispatch(closeComposereducer());
 
 }, 1000);
-
 
 }
 
@@ -146,7 +158,7 @@ setTimeout(() => {
 {/* =========================================footer============================ */}
         <div className='flex justify-between px-3 py-2 shadow-lg bg-gray-100'>
           <div className=' '>
-            <button className='border-0 border-blue-600 text-white bg-blue-600 rounded-sm shadow-md' type='submit'>
+            <button className='border-0 border-blue-600 text-white bg-blue-600 rounded-sm shadow-md pl-3' type='submit'>
             send
            <ArrowDropDownIcon /></button>
           
