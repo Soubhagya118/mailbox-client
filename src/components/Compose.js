@@ -26,7 +26,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 function Compose() {
-const mailData=useSelector(state=>state.Mail.mailDetails);
+const mailData=useSelector(state=>state.Mail?.mailDetails);
 const dispatch=useDispatch();
 const emailRef=useRef();
 const subjectRef=useRef();
@@ -136,7 +136,7 @@ setTimeout(() => {
 <form onSubmit={formHandler}>
         <div className='w-full mt-1'>
     <div className='flex flex-col '>
-      <input type='email' placeholder='Recipents' className='w-44 h-7  border-b-2 p-2' value={to} onChange={(e)=>setTo(e.target.value)} required/>
+      <input type='email'  placeholder='Recipents' className='w-44 h-7  border-b-2 p-2' value={to} onChange={(e)=>setTo(e.target.value)} required/>
       <input type='text' placeholder='Subject' className='w-44 h-7 border-b-2 p-2 ' value={sub} onChange={(e)=>setSub(e.target.value)} required/>
     <textarea rows={20} className='flex h-64' value={msg} onChange={(e)=>setMsg(e.target.value)}>
 

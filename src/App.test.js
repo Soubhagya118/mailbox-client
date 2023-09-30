@@ -6,6 +6,7 @@ import SignIn from './Authentication/SignIn';
 import { BrowserRouter as Router } from 'react-router-dom'; // Import the Router component
 
 import { renderWithProviders } from '../reducerWithProvider'
+import Compose from "./components/Compose";
 
 test("renders learn react link", () => {
   renderWithProviders( <Router>
@@ -93,3 +94,66 @@ test("renders to find text in signin", () => {
 
 
  });
+
+
+//  ========================================================================================================/
+//                                               compose/inbox                                              / 
+// =========================================================================================================/
+
+describe("compose",()=>{
+ test("renders to find text in compose",()=>{
+  renderWithProviders(<Router>
+    <Compose/>
+  </Router>)
+  const txt = screen.getByText("New message");
+  expect(txt).toBeInTheDocument();
+ });
+
+
+ test("renders to find button tag in compose",()=>{
+  renderWithProviders(<Router>
+    <Compose/>
+  </Router>)
+  const txt = screen.getByRole('button');
+  expect(txt).toBeInTheDocument();
+
+  // const linkElement = screen.getByRole('button');
+  // expect(linkElement).toBeInTheDocument();
+ });
+
+ test("renders to find input placeholder in compose",()=>{
+  renderWithProviders(<Router>
+    <Compose/>
+  </Router>)
+  const txt = screen.getByPlaceholderText("Recipents");
+  expect(txt).toBeInTheDocument();
+
+ });
+
+ test("renders to find button text in compose",()=>{
+  renderWithProviders(<Router>
+    <Compose/>
+  </Router>)
+  ////const txt = screen.getByPlaceholderText("Recipents");
+ // expect(txt).toBeInTheDocument();
+
+const frm = screen.getByText('send');
+expect(frm).toBeInTheDocument()
+
+ });
+
+ 
+ test("renders to find input placeholder in compose",()=>{
+  renderWithProviders(<Router>
+    <Compose/>
+  </Router>)
+  const txt = screen.getByPlaceholderText("Subject");
+  expect(txt).toBeInTheDocument();
+
+ });
+
+
+ 
+
+
+})
