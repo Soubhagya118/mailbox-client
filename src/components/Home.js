@@ -8,6 +8,7 @@ import { NavLink, Route, Routes } from 'react-router-dom';
 import Sent from '../components/Sent';
 import { useNavigate } from 'react-router-dom';
 import EmailMidPart from './emailMidPart';
+import EachMail from './EachMail';
 
 const Home = () => {
 const navigate=useNavigate();
@@ -43,7 +44,8 @@ dispatch(openComposereducer());
     <Routes>
         <Route exact path='/inbox' element={<EmailList/>}/>
         <Route exact path='/sent' element={<Sent/>}/>
-         
+        <Route exact path='/inbox/:id' element={<EachMail/>}/>
+
       </Routes>
 </div>
 

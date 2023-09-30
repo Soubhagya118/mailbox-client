@@ -3,6 +3,7 @@ import db from './firebase';
 import { collection, getDocs,updateDoc,doc } from 'firebase/firestore';
 import { useDispatch, useSelector } from 'react-redux';
 import {addmailDetails} from '../store/mailDetailsSlice'
+import { Link } from 'react-router-dom';
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 const EmailList = () => {
     const [emails,setEmails]=useState([]);
@@ -92,7 +93,7 @@ console.log(emails);
   return (
     <div>
    {console.log("emails",emails)}
-      {emails.map((ele)=><li key={ele.id} className='flex list-none border-2 border-white-50 justify-between px-2 cursor-pointer ' onClick={()=>updateMail({...ele})}>
+      {emails.map((ele)=><Link key={ele.id} to={`/inbox/${ele.id}`} className='flex list-none border-2 border-white-50 justify-between px-2 cursor-pointer ' onClick={()=>updateMail({...ele})}>
       <div className='flex-1 flex gap-4'>
       {(ele.isRead==false)&&<FiberManualRecordIcon style={{color:'blue', fontSize:'15px',marginTop:"5px"}}/>}
       <p>
@@ -105,7 +106,7 @@ console.log(emails);
      <p>{ele.timestamp}</p>
 
      </div>
-          </li>)}
+          </Link>)}
     </div>
   )
 }
