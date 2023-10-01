@@ -12,7 +12,7 @@ const navigate=useNavigate();
     const inputEmail=useRef();
     const inputPass=useRef();
     const inputConPass=useRef();
-
+    const inputName=useRef()
 
     const submitHandler=(e)=>{
         e.preventDefault();
@@ -21,6 +21,7 @@ const navigate=useNavigate();
         const email=inputEmail.current.value;
         const pass= inputPass.current.value;
         const conPass= inputConPass.current.value;
+        const name=inputName.current.value;
   if(pass===conPass){  
      
 // dispatch(showNotificationMessage({title:'Loading!',status:'Pending!'}))    
@@ -32,6 +33,7 @@ fetch(`${authUrl}signUp?key=${api}`,{
     body:JSON.stringify({
         email:email,
         password:pass,
+        displayName:name,
         returnSecureToken:true
     })
 }).then(res=>{
@@ -45,7 +47,7 @@ fetch(`${authUrl}signUp?key=${api}`,{
 })
     .then(data=>{
       
-        console.log(data);
+        console.log("signup data",data);
         toast.success("SignUp successfull")
         setTimeout(()=>navigate('/'),1000)
        // dispatch(showNotificationMessage({title:'Fulfilled!',status:'Sucess!'}))    
@@ -68,6 +70,7 @@ fetch(`${authUrl}signUp?key=${api}`,{
     <h1 className='my-4 text-center text-2xl'>SignUp</h1>
 
     <form onSubmit={submitHandler} className='grid gap-2'>
+    <input className='border-2 border-black-300 p-1 rounded-md' type='text' placeholder='User Name' ref={inputName} required/>
         <input  className='border-2 border-black-300 p-1 rounded-md' type='email' placeholder='Email' ref={inputEmail}   data-testid="input-field" required/>
         <input className='border-2 border-black-300 p-1 rounded-md' type='password' placeholder='Password' ref={inputPass} required/>
         <input className='border-2 border-black-300 p-1 rounded-md' type='password' placeholder='Confirm Password' ref={inputConPass} required/>

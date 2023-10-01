@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import db from './firebase';
-import { collection, getDocs,updateDoc,doc } from 'firebase/firestore';
 import { useDispatch, useSelector } from 'react-redux';
 import {addmailDetails} from '../store/mailDetailsSlice'
 import { Link } from 'react-router-dom';
@@ -10,11 +8,12 @@ const EmailList = () => {
 const maildetails= useSelector(state=>state?.Mail?.maildetails)
 const dispatch= useDispatch();
 
-
+let myEmailId=useSelector(state=>state?.Auth?.users);
+let userName=myEmailId?.name
 async function getData(){
   
   try {
-      const res = await fetch(`https://mailbox-client-fa8fa-default-rtdb.firebaseio.com/email.json`,{
+      const res = await fetch(`https://mailbox-client-fa8fa-default-rtdb.firebaseio.com/${userName}.json`,{
         method:'GET',
         headers:{
           'Content-Type':'application/json'
@@ -54,8 +53,8 @@ console.log("data",dataList)
 const updateMail=async(ele)=>{
 
   console.log(ele);
-  const getData1 = collection(db,"email");
-  console.log("getData update",getData1)
+  // const getData1 = collection(db,"email");
+  // console.log("getData update",getData1)
 const id =ele.id;
 
 const updatedData={
@@ -63,7 +62,7 @@ const updatedData={
   };
   
 
-  fetch(`https://mailbox-client-fa8fa-default-rtdb.firebaseio.com/email/${id}.json`,{
+  fetch(`https://mailbox-client-fa8fa-default-rtdb.firebaseio.com/${userName}/${id}.json`,{
     method:'PUT',
     headers:{
       'Content-Type':'application/json'

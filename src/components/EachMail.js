@@ -9,14 +9,15 @@ console.log("param",param)
     const eachEmail = useSelector(state=>state.Mail.mailDetails);
 const findMail= eachEmail?.find(e=>e.id==param);
 console.log("eachmail detial",findMail)
-
   return (
     <div>
       <div className='flex'>
         <AccountCircleIcon/>
             <p>{findMail.to}</p>
+          
       </div>
-      <div>{findMail.message}</div>
+      <div><b>{findMail.subject}</b></div>
+      <textarea disabled={true}>{findMail.message}</textarea>
     </div>
   )
 }
